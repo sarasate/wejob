@@ -1,4 +1,4 @@
-import { TanstackDevtools } from "@tanstack/react-devtools";
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
 	HeadContent,
 	Scripts,
@@ -54,7 +54,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<Header />
 				{children}
-				<TanstackDevtools
+				<TanStackDevtools
 					config={{
 						position: "bottom-left",
 					}}
