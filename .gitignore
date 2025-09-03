@@ -9,6 +9,7 @@ count.txt
 .tanstack
 .output
 .vinxi
+.netlify
 todos.json
 mcp-todos.json
 /src/generated/prisma
