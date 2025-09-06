@@ -1,7 +1,7 @@
-import { authQueries } from "@/services/queries";
 import { useQuery } from "@tanstack/react-query";
 import { organizationClient, passkeyClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
+import { authQueries } from "@/services/queries";
 
 export const authClient = createAuthClient({
 	baseURL: import.meta.env.VITE_SERVER_URL,
