@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
@@ -38,9 +39,9 @@ export function HeroUnit() {
 						<Button
 							size="lg"
 							className="px-8 py-3 text-base font-semibold"
-							disabled
+							asChild
 						>
-							Browse Jobs
+							<Link to="/jobs">Browse Jobs</Link>
 						</Button>
 						<Button
 							variant="outline"
