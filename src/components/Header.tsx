@@ -1,4 +1,7 @@
 "use client";
+import { Link } from "@tanstack/react-router";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	NavigationMenu,
@@ -12,9 +15,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Link } from "@tanstack/react-router";
-import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+
 // Simple logo component for the navbar
 const Logo = (props: React.SVGAttributes<SVGElement>) => {
 	return <> </>;
@@ -177,9 +178,12 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
 								className="flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors cursor-pointer"
 							>
 								<div className="text-2xl">{logo}</div>
-								<span className="hidden font-bold text-xl sm:inline-block">
+								<Link
+									to="/"
+									className="hidden font-bold text-xl sm:inline-block"
+								>
 									WeJob
-								</span>
+								</Link>
 							</Link>
 							{/* Navigation menu */}
 							{!isMobile && (
