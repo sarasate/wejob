@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/tanstackstart-react";
 import { env } from "../../env";
-import { PrismaClient } from "../../generated/prisma/client";
+import { sql } from "../db";
 
 // TypeScript interfaces for APIJobs API response
 interface APIJobsSearchRequest {
@@ -41,12 +41,10 @@ interface APIJobsSearchResponse {
 }
 
 class APIJobsImporter {
-	private prisma: PrismaClient;
 	private apiKey: string;
 	private baseUrl = "https://api.apijobs.dev/v1";
 
 	constructor() {
-		this.prisma = new PrismaClient();
 		this.apiKey = env.APIJOBS_API_KEY;
 	}
 
@@ -128,13 +126,11 @@ class APIJobsImporter {
 
 	private async importJob(job: APIJobsJob): Promise<void> {
 		// Check if job already exists by ID
-		const existingJob = await this.prisma.job.findUnique({
-			where: {
-				id: job.id,
-			},
-		});
+		const existingJob = await sql`
+			SELECT id FROM job WHERE id = ${job.id} LIMIT 1
+		`;
 
-		if (existingJob) {
+		if (existingJob.length > 0) {
 			console.log(`⏭️  Skipping duplicate job: ${job.title} (ID: ${job.id})`);
 			return;
 		}
@@ -204,13 +200,15 @@ class APIJobsImporter {
 			},
 		};
 
-		await this.prisma.job.create({
-			data: jobData,
-		});
+		await sql`
+			INSERT INTO job (id, title, description, location, provider, data, created_at, updated_at)
+			VALUES (${jobData.id}, ${jobData.title}, ${jobData.description}, ${jobData.location}, ${jobData.provider}, ${JSON.stringify(jobData.data)}, NOW(), NOW())
+		`;
 	}
 
 	async close(): Promise<void> {
-		await this.prisma.$disconnect();
+		// Drizzle doesn't require explicit connection closing
+		// The connection is managed automatically
 	}
 }
 

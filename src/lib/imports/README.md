@@ -15,7 +15,7 @@ The `apijobs.ts` script imports job data from the APIJobs API.
 
 2. Make sure your database is running and migrations are applied:
    ```bash
-   npx prisma migrate dev
+   npx drizzle-kit migrate
    ```
 
 ### Usage

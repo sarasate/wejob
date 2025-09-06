@@ -12,4 +12,3 @@ count.txt
 .netlify
 todos.json
 mcp-todos.json
-/src/generated/prisma
