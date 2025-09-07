@@ -174,16 +174,12 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
 						<div className="flex items-center gap-6">
 							<Link
 								to="/"
-								onClick={(e) => e.preventDefault()}
 								className="flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors cursor-pointer"
 							>
 								<div className="text-2xl">{logo}</div>
-								<Link
-									to="/"
-									className="hidden font-bold text-xl sm:inline-block"
-								>
+								<span className="hidden font-bold text-xl sm:inline-block">
 									WeJob
-								</Link>
+								</span>
 							</Link>
 							{/* Navigation menu */}
 							{!isMobile && (
