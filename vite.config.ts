@@ -18,7 +18,7 @@ const config = defineConfig({
         enabled: true,
       },
       customViteReactPlugin: true,
-      target:'netlify'
+      target:'vercel'
     }),
     viteReact(),
   ],
