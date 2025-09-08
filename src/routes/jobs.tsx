@@ -15,6 +15,32 @@ export const Route = createFileRoute("/jobs")({
 	loader: async ({ context }) => {
 		return context.queryClient.prefetchQuery(jobsQueries.allJobs());
 	},
+	pendingComponent: () => {
+		return (
+			<div className="container mx-auto px-4 py-8">
+				<h1 className="text-3xl font-bold mb-8">Jobs</h1>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{Array.from({ length: 6 }, (_, i) => {
+						const skeletonId = `loading-skeleton-${i}`;
+						return (
+							<Card key={skeletonId} className="animate-pulse">
+								<CardHeader>
+									<div className="h-3 bg-gray-200 rounded w-1/2"></div>
+								</CardHeader>
+								<CardContent>
+									<div className="space-y-2">
+										<div className="h-3 bg-gray-200 rounded"></div>
+										<div className="h-3 bg-gray-200 rounded w-5/6"></div>
+										<div className="h-3 bg-gray-200 rounded w-4/6"></div>
+									</div>
+								</CardContent>
+							</Card>
+						);
+					})}
+				</div>
+			</div>
+		);
+	},
 });
 
 function RouteComponent() {
