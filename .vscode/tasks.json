@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "doppler run -- pnpm run dev --port 4000",
+			"problemMatcher": [],
+			"label": "doppler: dev",
+			"detail": "doppler run -- pnpm run dev --port 4000"
+		}
+	]
+}
